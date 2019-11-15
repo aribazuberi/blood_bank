@@ -33,7 +33,6 @@ def login_view(request):
 	 context = {}
 
 	 user = request.user
-	 print('!!!!!!!!!!!!', user.is_authenticated)
 	 if user.is_authenticated:
 	 	return redirect('home')
 

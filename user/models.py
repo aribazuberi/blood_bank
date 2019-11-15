@@ -41,8 +41,8 @@ class User(AbstractBaseUser):
     is_verified_bank_owner = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email', ]
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username', ]
 
     objects = MyUserManager()
 
