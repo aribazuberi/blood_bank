@@ -2,3 +2,5 @@
 /.idea
 db.sqlite3
 user/__pycache__
+blood_bank/__pycache__
+user/migrations/*
