@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style type="text/css">
+	@media (max-width: 768px) { 
+		.right-column{
+			margin-left: 0px;
+		}
+	}
+	@media (min-width: 768px) { 
+		.right-column{
+			margin-left: 20px;
+		}
+	}
+	.blog-post-container{
+		margin-bottom: 10px;
+		width: 100%;
+	}
+	.create-post-bar{
+		background-color: #fff;
+		margin-bottom:20px;
+	}
+	.left-column{
+		padding:0px;
+	}
+	.right-column{
+		padding:0px;
+	}
+	.lead{
+		font-size: 17px;
+	}
+</style>
+<div class="container">
+	<div class="row">
+
+		<!-- blog feed -->
+		<div class="left-column col-lg-7 offset-lg-1">
+
+			<div >
+				<img class="img-fluid mx-auto d-block" src="{% static 'logo.png' %}" alt="logo" width="200" height="80">
+			</div>
+			<div style="color: #990909;" align="center">
+			    <p>Smart Blood Bank</p>
+			</div>
+			<br>
+
+			<div>
+				<h3 align="center"> Available blood bank</h3>
+			</div>
+
+			<!-- Blog posts-->
+			{% for post in banks %}
+				<div class="blog-post-container">
+					{% include 'main/snippets/banks.html' with banks=post %}
+				</div>
+			{% endfor %}
+			<!-- End Blog posts-->
+		</div>
+		<!-- end blog feed -->
+
+
+		<!-- Right 'create post' column  -->
+		
+		<!-- end Right 'create post' column  -->
+
+	</div>
+</div>
+
+{% endblock content %}

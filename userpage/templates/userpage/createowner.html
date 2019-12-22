@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style type="text/css">
+	.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="number"] {
+  margin-bottom: 10px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="text"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}  
+
+
+
+.h3{
+	text-align: center;
+}
+</style>
+
+<form class="form-signin" method="post">{% csrf_token %}
+  
+
+  <div class="d-flex flex-column pb-3">
+    <img class="img-fluid mx-auto d-block" src="{% static 'logo.png' %}" alt="logo" width="200" height="80">
+  </div>
+  <div style="color: #990909;" align="center">
+      <p>Smart Blood Bank</p>
+  </div>
+  <h1 class="h3 mb-3 font-weight-normal">Create Blood Bank</h1>
+
+
+  
+  <input type="text" name="name" id="inputName" class="form-control" placeholder="Name of Blood Bank" required>
+  <input type="text" name="address" id="inputAddress" class="form-control" placeholder="Address of Blood Bank" required>
+  <input type="text" name="contact" id="inputContact" class="form-control" placeholder="Contact" required>
+  <input type="text" name="city" id="inputCity" class="form-control" placeholder="City" required>
+
+  <input type="number" name="A_pos" id="inputA_pos" class="form-control" placeholder="A+" required>
+  <input type="number" name="A_neg" id="inputA_neg" class="form-control" placeholder="A-" required>
+  <input type="number" name="B_pos" id="inputB_pos" class="form-control" placeholder="B+" required>
+  <input type="number" name="B_neg" id="inputB_neg" class="form-control" placeholder="B-" required>
+  <input type="number" name="O_pos" id="inputO_pos" class="form-control" placeholder="O+" required>
+  <input type="number" name="O_neg" id="inputO_neg" class="form-control" placeholder="O-" required>
+  <input type="number" name="AB_pos" id="inputAB_pos" class="form-control" placeholder="AB+" required>
+  <input type="number" name="AB_neg" id="inputAB_neg" class="form-control" placeholder="AB-" required>
+
+
+
+  {% for field in createowner_form %}
+		<p>
+		{% for error in field.errors %}
+			<p style="color: red;">{{error}}</p>
+		{% endfor %}
+		</p>
+	{% endfor %}
+	
+	{% if createowner_form.non_field_errors %}
+		<div style="color:red;">
+			<p>{{createowner_form.non_field_errors}}</p>
+		</div>
+	{% endif %}
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
+  
+</form>
+
+
+
+
+{% endblock content %}

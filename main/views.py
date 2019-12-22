@@ -1,7 +1,14 @@
 from django.shortcuts import render
 
-# Create your views here.
+from userpage.models import Bank
 
 def home_screen_view(request):
-	print(request.headers)
 	return render(request, "main/home.html", {})
+
+
+def userhome_view(request):
+	context = {}
+	banks = Bank.objects.all()
+	context['banks'] = banks
+
+	return render(request, "main/userhome.html", context)

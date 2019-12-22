@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+	<img class="img-fluid mx-auto d-block" src="{% static 'logo.png' %}" alt="logo" width="300" height="150">
+  <h1 class="display-4" style="color: #990909;" >Smart Blood Bank</h1>
+  <p class="lead">Blood Bank Successfully created </p>
+  <br>
+  <p class="lead"> </p>
+</div>
+
+<div align="center">
+	<a class="btn btn-outline-primary" href="{% url 'createowner' %}"> Create </a>
+
+	<!--a class="btn btn-outline-primary" href="{% url 'updateowner' %}"> Update </a-->
+</div>
+
+
+
+
+
+{% endblock content %}

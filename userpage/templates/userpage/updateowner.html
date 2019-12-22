@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<style type="text/css">
+	.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="text"] {
+  margin-bottom: 10px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="number"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+</style>
+
+<form class="form-signin" method="post">{% csrf_token %}
+  <!--img class="mb-4" src="{{ site.baseurl }}/docs/{{ site.docs_version }}/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"-->
+  <h1 class="h3 mb-3 font-weight-normal">Update Bank Details</h1>
+
+  
+  
+  <input type="number" name="A_pos" id="inputA_pos" class="form-control" placeholder="A+" required value={{updateowner_form.initial.A_pos}}>
+  <input type="number" name="A_neg" id="inputA_neg" class="form-control" placeholder="A-" required value={{updateowner_form.initial.A_neg}}>
+  <input type="number" name="B_pos" id="inputB_pos" class="form-control" placeholder="B+" required value={{updateowner_form.initial.B_pos}}>
+  <input type="number" name="B_neg" id="inputB_neg" class="form-control" placeholder="B-" required value={{updateowner_form.initial.B_neg}}>
+  <input type="number" name="O_pos" id="inputO_pos" class="form-control" placeholder="O+" required value={{updateowner_form.initial.O_pos}}>
+  <input type="number" name="O_neg" id="inputO_neg" class="form-control" placeholder="O-" required value={{updateowner_form.initial.O_neg}}>
+  <input type="number" name="AB_pos" id="inputAB_pos" class="form-control" placeholder="AB+" required value={{updateowner_form.initial.AB_pos}}>
+  <input type="number" name="AB_neg" id="inputAB_neg" class="form-control" placeholder="AB-" required value={{updateowner_form.initial.AB_neg}}>
+
+
+  {% for field in updateowner_form %}
+		<p>
+		{% for error in field.errors %}
+			<p style="color: red;">{{error}}</p>
+		{% endfor %}
+		</p>
+	{% endfor %}
+	
+	{% if updateowner_form.non_field_errors %}
+		<div style="color:red;">
+			<p>{{updateowner_form.non_field_errors}}</p>
+		</div>
+	{% endif %}
+
+	{% if success_message %}
+		
+		<p style="color:red; text-align: center; ">{{success_message}}</p>
+		
+	{% endif %}
+
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Save Changes</button>
+ 
+
+
+{% endblock content %}

@@ -1,12 +1,24 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+	<img class="img-fluid mx-auto d-block" src="{% static 'logo.png' %}" alt="logo" width="300" height="150">
+  <h1 class="display-4" style="color: #990909;" >Smart Blood Bank</h1>
+  <p class="lead"> </p>
+  <br>
+  <p class="lead">Smart Blood Bank makes getting blood even more easier now. 
+  Get Blood at your fingertips in 3 quick steps</p>
+<p>1. Make an account and enter your profile details.</p>
+<p>2. Enter your blood details and location</p>
+<p>3.Get a list of available blood banks nearby </p>
+</div>
 
+<div align="center">
+	<a class="btn btn-outline-primary" href="{% url 'login' %}"> Login </a>
 
-	
-	<h1>This is the body</h1>
-	<p>Here is where you put stuff that should be in the body of your website.</p>
+	<a class="btn btn-outline-primary" href="{% url 'register' %}"> Register </a>
+</div>
 
 
 

@@ -4,6 +4,7 @@ from user.forms import RegistrationForm,UserAuthenticationForm,AccountUpdateForm
 from django.http import HttpResponse
 
 
+
 def registration_view(request):
 	context = {}
 	if request.POST:
@@ -14,7 +15,7 @@ def registration_view(request):
 			raw_password = form.cleaned_data.get('password1')
 			#user = authenticate(email=email, password=raw_password)
 			login(request, user)
-			return redirect("home")
+			return redirect("userhome")
 		else:
 			context['registration_form']=form
 	else:
@@ -45,7 +46,10 @@ def login_view(request):
 
 	 		if user:
 	 			login(request, user)
-	 			return redirect('home')
+	 			if user.is_verified_bank_owner:
+	 				return redirect('ownerpage')
+	 			else:
+	 				return redirect('userhome')
 
 	 else:
 	 	form =UserAuthenticationForm()
@@ -65,7 +69,12 @@ def update_view(request):
 	if request.POST:
 		form = AccountUpdateForm(request.POST, instance=request.user)
 		if form.is_valid():
+			form.initial = {
+				"email": request.POST['email'],
+				"username": request.POST['username'],
+			}
 			form.save()
+			context['success_message'] = "Updated"
 	else:
 		form = AccountUpdateForm(
 				initial= {
